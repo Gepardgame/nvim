@@ -12,13 +12,14 @@ return {
   {
     "nvim-telescope/telescope-ui-select.nvim",
     config = function()
-      require("telescope").setup({
+      local opts = {
         extensions = {
           ["ui-select"] = {
             require("telescope.themes").get_dropdown({}),
           },
         },
-      })
+      }
+      require("telescope").setup(opts)
       require("telescope").load_extension("ui-select")
     end,
   },
