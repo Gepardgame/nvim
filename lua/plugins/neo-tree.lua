@@ -75,7 +75,10 @@ return {
 		local function on_move(data)
 			LazyVim.lsp.on_rename(data.source, data.destination)
 		end
-		vim.keymap.set("n", "<C-n>", ":Neotree<CR>", {})
+		vim.keymap.set("n", "<C-n>", function()
+			vim.cmd("Neotree")
+		end, {})
+
 		opts["window"] = {
 			mappings = {
 				["P"] = { "toggle_preview", config = { use_float = false, use_image_nvim = true } },
@@ -84,8 +87,8 @@ return {
 		opts["filesystem"] = {
 			filtered_items = {
 				hide_dotfiles = false,
-				hide_gitignored = false,
-				hide_by_name = { ".git", ".luarc.json", "lazy-lock.json" },
+				hide_gitignored = true,
+				hide_by_name = { ".git" },
 			},
 		}
 		local events = require("neo-tree.events")
