@@ -84,9 +84,8 @@ return {
 		opts["filesystem"] = {
 			filtered_items = {
 				hide_dotfiles = false,
-				hide_gitignored = true,
-
-				hide_by_name = { ".git" },
+				hide_gitignored = false,
+				hide_by_name = { ".git", ".luarc.json", "lazy-lock.json" },
 			},
 		}
 		local events = require("neo-tree.events")
