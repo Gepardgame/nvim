@@ -83,9 +83,10 @@ return {
 		}
 		opts["filesystem"] = {
 			filtered_items = {
-				visible = true,
 				hide_dotfiles = false,
 				hide_gitignored = true,
+
+				hide_by_name = { ".git" },
 			},
 		}
 		local events = require("neo-tree.events")
