@@ -22,7 +22,15 @@ return {
 		},
 		sections = {
 			lualine_a = { "mode" },
-			lualine_b = { "branch", "diff", "diagnostics" },
+			lualine_b = {
+				"branch",
+				"diff",
+				"diagnostics",
+				{
+					require("gitblame").get_current_blame_text,
+					cond = require("gitblame").is_blame_text_available,
+				},
+			},
 			lualine_c = { "filename" },
 			lualine_x = { "searchcount", "encoding", "fileformat", "filetype", "filesize" },
 			lualine_y = { "progress" },
