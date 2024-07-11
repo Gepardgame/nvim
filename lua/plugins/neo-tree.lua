@@ -75,9 +75,7 @@ return {
 		local function on_move(data)
 			LazyVim.lsp.on_rename(data.source, data.destination)
 		end
-		vim.keymap.set("n", "<C-n>", function()
-			vim.cmd("Neotree")
-		end, {})
+		vim.keymap.set("n", "<C-n>", "<cmd>Neotree<cr>", {})
 
 		opts["window"] = {
 			mappings = {
