@@ -33,6 +33,11 @@ return {
       bind_to_cwd = false,
       follow_current_file = { enabled = true },
       use_libuv_file_watcher = true,
+      filtered_items = {
+        hide_dotfiles = false,
+        hide_gitignored = true,
+        hide_by_name = { ".git" },
+      },
     },
     window = {
       mappings = {
@@ -77,18 +82,6 @@ return {
     end
     vim.keymap.set("n", "<C-n>", "<cmd>Neotree toggle<cr>", {})
 
-    opts["window"] = {
-      mappings = {
-        ["P"] = { "toggle_preview", config = { use_float = false, use_image_nvim = true } },
-      },
-    }
-    opts["filesystem"] = {
-      filtered_items = {
-        hide_dotfiles = false,
-        hide_gitignored = true,
-        hide_by_name = { ".git" },
-      },
-    }
     local events = require("neo-tree.events")
     opts.event_handlers = opts.event_handlers or {}
     vim.list_extend(opts.event_handlers, {
