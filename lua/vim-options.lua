@@ -27,3 +27,12 @@ vim.keymap.set({ "n", "v", "i" }, "<C-m-s>", function()
 	vim.cmd("wa")
 	vim.api.nvim_command("stopinsert")
 end, { desc = "Save all Files" })
+
+vim.api.nvim_create_autocmd("TextYankPost", {
+	group = vim.api.nvim_create_augroup("highlight_yank", {}),
+	desc = "Hightlight selection on yank",
+	pattern = "*",
+	callback = function()
+		vim.highlight.on_yank({ higroup = "IncSearch", timeout = 200 })
+	end,
+})
