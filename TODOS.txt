@@ -1,0 +1,21 @@
+IDE:
+- no mouse needed for anything (Switch between tree and file/ switch between files, close files) -> cokeline needed
+- copy/paste
+- projects to easily get old prject loaded -> over tmuxinator
+- default config, which specific can extend and add things (default: no python support, specific for python: has all default things + python support)
+- git support (adding, commiting, pushing, also better merge conflict reader like jetbrains does it) -> merge conflict handler
+- newline without going into insert mode
+- vernümftige ""(){}[] setzter mit option  das markiert ist damit zu umklammern, wie jetbrains das macht
+- find & replace modus
+- see test coverage in IDE
+- functions folding
+
+
+Very Special:
+- then cd in a folder with shell.nix -> auto load the file
+- shell.nix has the default + specific configs loaded
+- starts tmux (or something similar), whith multiply terminals open, where stuff runs already, like viewing looger, testing application, etc.
+- load env variables and environments in specific subfolders (python venv only in backend folder for example)
+
+
+Maybe GIthub group, where I do all this things? Project with configs, project with own nevim plugins if needed
