@@ -18,23 +18,29 @@ vim.keymap.set("n", "ZZ", "<cmd>qa<cr>", { desc = "Quits hole program" })
 vim.keymap.set("n", "<leader>h", "<cmd>nohlsearch<cr>", { desc = "Clear search Highlighting" })
 vim.keymap.set("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
 vim.keymap.set({ "n", "v", "i" }, "<C-s>", function()
-    vim.cmd("w")
-    vim.lsp.buf.format()
-    vim.cmd("w")
-    vim.api.nvim_command("stopinsert")
+	vim.cmd("w")
+	vim.lsp.buf.format()
+	vim.cmd("w")
+	vim.api.nvim_command("stopinsert")
 end, { desc = "Save File" })
 vim.keymap.set({ "n", "v", "i" }, "<C-m-s>", function()
-    vim.cmd("wa")
-    vim.lsp.buf.format()
-    vim.cmd("wa")
-    vim.api.nvim_command("stopinsert")
+	vim.cmd("wa")
+	vim.lsp.buf.format()
+	vim.cmd("wa")
+	vim.api.nvim_command("stopinsert")
 end, { desc = "Save all Files" })
 
 vim.api.nvim_create_autocmd("TextYankPost", {
-    group = vim.api.nvim_create_augroup("highlight_yank", {}),
-    desc = "Hightlight selection on yank",
-    pattern = "*",
-    callback = function()
-        vim.highlight.on_yank({ higroup = "IncSearch", timeout = 200 })
-    end,
+	group = vim.api.nvim_create_augroup("highlight_yank", {}),
+	desc = "Hightlight selection on yank",
+	pattern = "*",
+	callback = function()
+		vim.highlight.on_yank({ higroup = "IncSearch", timeout = 200 })
+	end,
+})
+
+vim.filetype.add({
+	extension = {
+		slint = "slint",
+	},
 })

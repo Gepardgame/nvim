@@ -25,7 +25,8 @@ return {
                     "gitlab_ci_ls",
                     "yamlls",
                     "ansiblels",
-                    "volar"
+                    "volar",
+                    "slint_lsp",
                 },
             })
         end,
@@ -86,6 +87,12 @@ return {
                         },
                     },
                 },
+            })
+            lspconfig.slint_lsp.setup({
+                cmd = { "slint-lsp" },
+                filetypes = { "slint" },
+                root_dir = lspconfig.util.root_pattern("slint.toml", ".git"),
+                settings = {},
             })
 
             vim.keymap.set("n", "<A-CR>", vim.lsp.buf.hover, { desc = "Gives Hover Information" })
