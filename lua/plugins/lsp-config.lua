@@ -99,7 +99,7 @@ return {
             vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Goes to Defention" })
             vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Gives Code Actions" })
             vim.keymap.set('n', 'gr', '<Cmd>Telescope lsp_references<CR>', { desc = "Find references" })
-            vim.keymap.set({ "n", "v", "i" }, "<leader>r", vim.lsp.buf.rename, { desc = "Rename variabale" })
+            vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, { desc = "Rename variabale" })
         end,
     },
 }
