@@ -2,11 +2,29 @@ return {
     {
         "williamboman/mason.nvim",
         config = function()
-            require("mason").setup()
-        end,
+            require("mason").setup({
+                ui = {
+                    icons = {
+                        package_installed = "✓",
+                        package_pending = "➜",
+                        package_uninstalled = "✗"
+                    }
+                },
+                ensure_installed = {
+                    -- Python
+                    "ruff",
+                    "mypy",
+                    "black",
+                    "debugpy",
+                },
+            })
+        end
     },
     {
         "williamboman/mason-lspconfig.nvim",
+        dependencies = {
+            "williamboman/mason.nvim",
+        },
         config = function()
             require("mason-lspconfig").setup({
                 ensure_installed = {
@@ -14,12 +32,10 @@ return {
                     "dockerls",
                     "docker_compose_language_service",
                     "jsonls",
-                    "java_language_server",
+                    "jdtls",
                     "lua_ls",
                     "markdown_oxide",
                     "nil_ls",
-                    "ruff_lsp",
-                    "jedi_language_server",
                     "sqlls",
                     "tflint",
                     "gitlab_ci_ls",
@@ -27,12 +43,18 @@ return {
                     "ansiblels",
                     "volar",
                     "slint_lsp",
-                },
+                    -- Python
+                    "pylsp",
+                }
             })
         end,
     },
     {
         "neovim/nvim-lspconfig",
+        dependencies = {
+            "williamboman/mason.nvim",
+            "williamboman/mason-lspconfig.nvim",
+        },
         config = function()
             local lspconfig = require("lspconfig")
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -40,7 +62,6 @@ return {
             lspconfig.dockerls.setup({ capabilities = capabilities })
             lspconfig.docker_compose_language_service.setup({ capabilities = capabilities })
             lspconfig.jsonls.setup({ capabilities = capabilities })
-            lspconfig.java_language_server.setup({ capabilities = capabilities })
             lspconfig.lua_ls.setup({
                 capabilities = capabilities,
                 settings = {
@@ -66,8 +87,6 @@ return {
             })
             lspconfig.markdown_oxide.setup({ capabilities = capabilities })
             lspconfig.nil_ls.setup({ capabilities = capabilities })
-            lspconfig.ruff_lsp.setup({ capabilities = capabilities })
-            lspconfig.jedi_language_server.setup({ capabilities = capabilities })
             lspconfig.sqlls.setup({ capabilities = capabilities })
             lspconfig.tflint.setup({ capabilities = capabilities })
             lspconfig.gitlab_ci_ls.setup({ capabilities = capabilities })
@@ -93,6 +112,15 @@ return {
                 filetypes = { "slint" },
                 root_dir = lspconfig.util.root_pattern("slint.toml", ".git"),
                 settings = {},
+            })
+            lspconfig.pylsp.setup({
+                capabilities = capabilities,
+                filetypes = { "python" },
+                settings = {
+                    pylsp = {
+                        plugins = {}
+                    }
+                }
             })
 
             vim.keymap.set("n", "<A-CR>", vim.lsp.buf.hover, { desc = "Gives Hover Information" })
