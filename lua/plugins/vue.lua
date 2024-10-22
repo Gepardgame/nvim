@@ -1,3 +1,0 @@
-return {
-  "posva/vim-vue"
-}
