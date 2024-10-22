@@ -26,7 +26,7 @@ vim.o.number = true
 vim.o.relativenumber = true
 vim.o.ttimeoutlen = 100
 vim.filetype.add({
-  extension = {
-    slint = "slint",
-  },
+	extension = {
+		slint = "slint",
+	},
 })
