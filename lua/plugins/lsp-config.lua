@@ -1,6 +1,10 @@
 return {
   {
-    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
+    dependencies = {
+      "williamboman/mason.nvim",
+      "WhoIsSethDaniel/mason-tool-installer.nvim"
+    },
     config = function()
       require("mason").setup({
         ui = {
@@ -10,22 +14,7 @@ return {
             package_uninstalled = "✗"
           }
         },
-        ensure_installed = {
-          -- Python
-          "ruff",
-          "mypy",
-          "black",
-          "debugpy",
-        },
       })
-    end
-  },
-  {
-    "williamboman/mason-lspconfig.nvim",
-    dependencies = {
-      "williamboman/mason.nvim",
-    },
-    config = function()
       require("mason-lspconfig").setup({
         ensure_installed = {
           "bashls",
@@ -43,9 +32,15 @@ return {
           "ansiblels",
           "volar",
           "slint_lsp",
-          -- Python
-          "pylsp",
+          "pyright",
         }
+      })
+      require("mason-tool-installer").setup({
+        ensure_installed = {
+          "mypy",
+          "black",
+          "debugpy",
+        },
       })
     end,
   },
@@ -127,11 +122,11 @@ return {
         root_dir = lspconfig.util.root_pattern("slint.toml", ".git"),
         settings = {},
       })
-      lspconfig.pylsp.setup({
+      lspconfig.pyright.setup({
         capabilities = capabilities,
         filetypes = { "python" },
         settings = {
-          pylsp = {
+          pyright = {
             plugins = {}
           }
         }
@@ -140,7 +135,7 @@ return {
       local open_floating_preview = vim.lsp.util.open_floating_preview
       function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
         opts = opts or {}
-        opts.border = opts.border or "rounded"         -- Set border to rounded
+        opts.border = opts.border or "rounded" -- Set border to rounded
         return open_floating_preview(contents, syntax, opts, ...)
       end
 
