@@ -1,5 +1,6 @@
 return {
   "nvimtools/none-ls.nvim",
+  requires = { 'nvim-lua/plenary.nvim' },
   opts = function()
     local none_ls = require("null-ls")
     local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
@@ -7,7 +8,6 @@ return {
     local opts = {
       sources = {
         none_ls.builtins.diagnostics.mypy,
-        none_ls.builtins.diagnostics.ruff,
         none_ls.builtins.formatting.black,
       },
       on_attach = function(client, bufnr)
