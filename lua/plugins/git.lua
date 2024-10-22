@@ -1,6 +1,7 @@
 return {
   {
     "f-person/git-blame.nvim",
+    event = 'VeryLazy',
     config = function()
       vim.keymap.set("n", "<leader>gb", "<cmd>GitBlameToggle<cr>", { desc = "Toggles git blame line in lualine" })
       vim.g.gitblame_display_virtual_text = 0
@@ -8,7 +9,6 @@ return {
   },
   {
     "NeogitOrg/neogit",
-    tag = "v0.0.1",
     dependencies = {
       "nvim-lua/plenary.nvim",
       "sindrets/diffview.nvim",

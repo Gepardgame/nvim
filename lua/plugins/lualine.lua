@@ -1,9 +1,12 @@
 return {
   "nvim-lualine/lualine.nvim",
-  dependencies = { "nvim-tree/nvim-web-devicons" },
+  dependencies = {
+    "nvim-tree/nvim-web-devicons",
+    "linrongbin16/lsp-progress.nvim",
+  },
   opts = {
     options = {
-      theme = "dracula",
+      theme = "codedark",
       icons_enabled = true,
       component_separators = { left = "", right = "" },
       section_separators = { left = "", right = "" },
@@ -31,7 +34,18 @@ return {
           cond = require("gitblame").is_blame_text_available,
         },
       },
-      lualine_c = { "filename" },
+      lualine_c = {
+        {
+          "filename",
+          file_status = true,
+          newfile_status = false,
+          path = 0,
+          symbols = {
+            modified = '[+]',
+            readonly = '[-]',
+          }
+        }
+      },
       lualine_x = { "searchcount", "encoding", "fileformat", "filetype", "filesize" },
       lualine_y = { "progress" },
       lualine_z = { "location" },
