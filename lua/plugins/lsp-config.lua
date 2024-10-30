@@ -40,6 +40,7 @@ return {
 					"mypy",
 					"black",
 					"debugpy",
+					"isort",
 				},
 			})
 		end,
