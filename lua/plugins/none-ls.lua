@@ -9,6 +9,7 @@ return {
 			sources = {
 				none_ls.builtins.diagnostics.mypy,
 				none_ls.builtins.formatting.black,
+				none_ls.builtins.formatting.isort,
 			},
 			on_attach = function(client, bufnr)
 				if client.supports_method("textDocument/formatting") then
