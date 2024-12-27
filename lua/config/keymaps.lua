@@ -1,5 +1,5 @@
 local keymap = vim.keymap
-keymap.set("n", "ZZ", "<cmd>qa<cr>", { desc = "Quits hole program" })
+keymap.set("n", "ZZ", "<cmd>qa<cr>", { desc = "Quit all" })
 keymap.set("n", "<leader>h", "<cmd>nohlsearch<cr>", { desc = "Clear search Highlighting" })
 keymap.set("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
 keymap.set({ "n", "v", "i" }, "<C-s>", function()
@@ -12,4 +12,12 @@ keymap.set({ "n", "v", "i" }, "<C-m-s>", function()
 end, { desc = "Save all Files" })
 
 -- Git
-vim.keymap.set("n", "<leader>gg", "<cmd>Neogit<cr>", { desc = "Opens git window" })
+keymap.set("n", "<leader>gg", "<cmd>Neogit<cr>", { desc = "Opens git window" })
+keymap.set("n", "<leader>gb", "<cmd>GitBlameToggle<cr>", { desc = "Toggles git blame line in lualine" })
+
+-- LSP
+keymap.set("n", "<A-CR>", vim.lsp.buf.hover, { desc = "Gives Hover Information" })
+keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Goes to Defention" })
+keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Gives Code Actions" })
+keymap.set("n", "gr", "<Cmd>FzfLua lsp_references<CR>", { desc = "Find references" })
+keymap.set("n", "<leader>r", vim.lsp.buf.rename, { desc = "Rename variabale" })

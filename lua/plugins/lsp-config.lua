@@ -41,6 +41,7 @@ return {
 					"black",
 					"debugpy",
 					"isort",
+					"ruff",
 				},
 			})
 		end,
@@ -51,19 +52,15 @@ return {
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
 			{ "j-hui/fidget.nvim", opts = {} },
-			{ "folke/neodev.nvim", opts = {} },
+			"hrsh7th/cmp-nvim-lsp",
 		},
 		event = "VeryLazy",
 		config = function()
 			local lspconfig = require("lspconfig")
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
-			local lsp_attach = function(client, bufnr)
-				-- Create your keybindings here...
-			end
 			require("mason-lspconfig").setup_handlers({
 				function(server_name)
 					lspconfig[server_name].setup({
-						on_attach = lsp_attach,
 						capabilities = capabilities,
 					})
 				end,
@@ -122,28 +119,6 @@ return {
 				root_dir = lspconfig.util.root_pattern("slint.toml", ".git"),
 				settings = {},
 			})
-			lspconfig.pyright.setup({
-				capabilities = capabilities,
-				filetypes = { "python" },
-				settings = {
-					pyright = {
-						plugins = {},
-					},
-				},
-			})
-
-			local open_floating_preview = vim.lsp.util.open_floating_preview
-			function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
-				opts = opts or {}
-				opts.border = opts.border or "rounded" -- Set border to rounded
-				return open_floating_preview(contents, syntax, opts, ...)
-			end
-
-			vim.keymap.set("n", "<A-CR>", vim.lsp.buf.hover, { desc = "Gives Hover Information" })
-			vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Goes to Defention" })
-			vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Gives Code Actions" })
-			vim.keymap.set("n", "gr", "<Cmd>Telescope lsp_references<CR>", { desc = "Find references" })
-			vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, { desc = "Rename variabale" })
 		end,
 	},
 }
