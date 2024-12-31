@@ -18,6 +18,7 @@ return {
 			require("mason-lspconfig").setup({
 				ensure_installed = {
 					"bashls",
+					"cssls",
 					"dockerls",
 					"docker_compose_language_service",
 					"jsonls",
@@ -52,12 +53,14 @@ return {
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
 			{ "j-hui/fidget.nvim", opts = {} },
-			"hrsh7th/cmp-nvim-lsp",
+			"saghen/blink.cmp",
 		},
 		event = "VeryLazy",
 		config = function()
 			local lspconfig = require("lspconfig")
-			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+			local capabilities = require("blink.cmp").get_lsp_capabilities({
+				textDocument = { completion = { completionItem = { snippetSupport = true } } },
+			})
 			require("mason-lspconfig").setup_handlers({
 				function(server_name)
 					lspconfig[server_name].setup({
@@ -65,10 +68,6 @@ return {
 					})
 				end,
 			})
-			lspconfig.bashls.setup({ capabilities = capabilities })
-			lspconfig.dockerls.setup({ capabilities = capabilities })
-			lspconfig.docker_compose_language_service.setup({ capabilities = capabilities })
-			lspconfig.jsonls.setup({ capabilities = capabilities })
 			lspconfig.lua_ls.setup({
 				capabilities = capabilities,
 				settings = {
@@ -91,15 +90,6 @@ return {
 					},
 				},
 			})
-			lspconfig.markdown_oxide.setup({ capabilities = capabilities })
-			lspconfig.nil_ls.setup({ capabilities = capabilities })
-			lspconfig.sqlls.setup({ capabilities = capabilities })
-			lspconfig.tflint.setup({ capabilities = capabilities })
-			lspconfig.gitlab_ci_ls.setup({ capabilities = capabilities })
-			lspconfig.yamlls.setup({ capabilities = capabilities })
-			lspconfig.ansiblels.setup({ capabilities = capabilities })
-			lspconfig.volar.setup({ capabilities = capabilities })
-			lspconfig.jdtls.setup({ capabilities = capabilities })
 			lspconfig.rust_analyzer.setup({
 				capabilities = capabilities,
 				settings = {
