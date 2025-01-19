@@ -19,8 +19,10 @@ return {
 				ensure_installed = {
 					"bashls",
 					"cssls",
+					"csharp_ls",
 					"dockerls",
 					"docker_compose_language_service",
+					"gopls",
 					"jsonls",
 					"jdtls",
 					"lua_ls",
@@ -38,11 +40,15 @@ return {
 			})
 			require("mason-tool-installer").setup({
 				ensure_installed = {
+					"go-debug-adapter",
+					"revive",
+					"goimports",
 					"mypy",
 					"black",
 					"debugpy",
 					"isort",
 					"ruff",
+					"ruff-lsp",
 				},
 			})
 		end,
@@ -90,6 +96,30 @@ return {
 					},
 				},
 			})
+			lspconfig.ruff.setup({
+				cmd_env = { RUFF_TRACE = "messages" },
+				init_options = {
+					settings = {
+						logLevel = "error",
+					},
+				},
+				keys = {
+					{
+						"<leader>co",
+						LazyVim.lsp.action["source.organizeImports"],
+						desc = "Organize Imports",
+					},
+				},
+			})
+			-- lspconfig.ruff_lsp.setup({
+			-- 	keys = {
+			-- 		{
+			-- 			"<leader>co",
+			-- 			LazyVim.lsp.action["source.organizeImports"],
+			-- 			desc = "Organize Imports",
+			-- 		},
+			-- 	},
+			-- })
 			lspconfig.rust_analyzer.setup({
 				capabilities = capabilities,
 				settings = {

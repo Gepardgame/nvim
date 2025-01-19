@@ -1,8 +1,8 @@
 return {
 	"nvim-lualine/lualine.nvim",
 	dependencies = {
-		"nvim-tree/nvim-web-devicons",
 		"linrongbin16/lsp-progress.nvim",
+		"echasnovski/mini.icons",
 	},
 	opts = {
 		options = {
