@@ -20,6 +20,7 @@ return {
 					"bashls",
 					"cssls",
 					"csharp_ls",
+					"docker_compose_language_service",
 					"dockerls",
 					"docker_compose_language_service",
 					"gopls",

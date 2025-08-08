@@ -12,6 +12,7 @@ vim.bo.softtabstop = 2
 opt.shiftwidth = 4
 
 vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 vim.g.autoformat = true
 
 opt.backspace = "indent,eol,start"
