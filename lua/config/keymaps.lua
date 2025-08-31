@@ -12,4 +12,4 @@ keymap.set({ "n", "v", "i" }, "<C-m-s>", function()
 end, { desc = "Save all Files" })
 
 -- Git
-vim.keymap.set("n", "<leader>gg", "<cmd>Neogit<cr>", { desc = "Opens git window" })
+-- vim.keymap.set("n", "<leader>gg", "<cmd>Neogit<cr>", { desc = "Opens git window" })
