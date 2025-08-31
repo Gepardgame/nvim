@@ -15,13 +15,7 @@ return {
 		local lspconfig = require("lspconfig")
 		local mason_lspconfig = require("mason-lspconfig")
 		local mason_tool_installer = require("mason-tool-installer")
-		local capabilities = {
-			textDocument = {
-				semanticTokens = {
-					multilineTokenSupport = true,
-				},
-			},
-		}
+		local capabilities = require("blink.cmp").get_lsp_capabilities()
 		mason.setup({
 			ui = {
 				icons = {
