@@ -28,20 +28,35 @@ return {
 		end)
 	end,
 	opts = function()
+		-- helper to resolve pyenv path
+		local get_pyenv_python_path = function()
+			local handle = io.popen("pyenv which python")
+			if handle == nil then
+				return nil
+			end
+			local result = handle:read("*a")
+			handle:close()
+			return result and result:gsub("%s+$", "") or nil
+		end
 		local none_ls = require("null-ls")
 		local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
 		local opts = {
 			sources = {
 				none_ls.builtins.diagnostics.fish,
-				none_ls.builtins.diagnostics.mypy,
 
 				none_ls.builtins.formatting.fish_indent,
 				none_ls.builtins.formatting.stylua,
 				none_ls.builtins.formatting.shfmt,
-				none_ls.builtins.formatting.black,
 				none_ls.builtins.formatting.isort,
 				none_ls.builtins.formatting.goimports,
+
+				none_ls.builtins.diagnostics.mypy.with({
+					extra_args = function()
+						local virtual = get_pyenv_python_path()
+						return { "--python-executable", virtual }
+					end,
+				}),
 			},
 			on_attach = function(client, bufnr)
 				if client.supports_method("textDocument/formatting") then
