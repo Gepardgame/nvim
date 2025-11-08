@@ -12,7 +12,6 @@ return {
 
 	{
 		"saghen/blink.cmp",
-		version = "0.*",
 		dependencies = {
 			-- add source
 			{ "dmitmel/cmp-digraphs" },

@@ -2,7 +2,7 @@ return {
 	"nvim-lualine/lualine.nvim",
 	dependencies = {
 		"linrongbin16/lsp-progress.nvim",
-		"echasnovski/mini.icons",
+		"nvim-mini/mini.icons",
 	},
 	opts = {
 		options = {

@@ -1,1 +1,1 @@
-return { "echasnovski/mini.icons" }
+return { "nvim-mini/mini.icons" }
