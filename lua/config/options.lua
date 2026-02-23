@@ -7,8 +7,9 @@ opt.termguicolors = true
 
 opt.expandtab = true
 opt.autoindent = true
-opt.tabstop = 2
+opt.tabstop = 4
 vim.bo.softtabstop = 2
+vim.softtabstop = 4
 opt.shiftwidth = 4
 
 vim.g.mapleader = " "
@@ -31,3 +32,5 @@ vim.filetype.add({
 		slint = "slint",
 	},
 })
+
+vim.cmd("filetype plugin indent on")

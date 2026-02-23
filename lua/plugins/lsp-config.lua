@@ -44,7 +44,7 @@ return {
 				"yamlls",
 				"ansiblels",
 				"slint_lsp",
-				"pyright",
+				"ty",
 			},
 		})
 		mason_tool_installer.setup({
@@ -52,12 +52,11 @@ return {
 				"go-debug-adapter",
 				"revive",
 				"goimports",
-				"mypy",
 				"black",
 				"debugpy",
 				"isort",
 				"ruff",
-				"ruff-lsp",
+				"vsg",
 			},
 		})
 
@@ -126,6 +125,6 @@ return {
 			cmd = { "clangd", "--compile-commands-dir=." },
 		})
 
-		require("lspconfig").vhdl_ls.setup({})
+		vim.lsp.config("vhdl_ls", {})
 	end,
 }
